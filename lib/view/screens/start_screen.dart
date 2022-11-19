@@ -60,99 +60,135 @@ class HomeScreen extends StatelessWidget {
               children: [
                 SvgPicture.asset('assets/icons/main_bg_all.svg',
                     fit: BoxFit.fill),
-                SafeArea(
-                  child: Stack(
-                    children: [
-                      Positioned(
-                        top: 40,
-                        left: 0,
-                        right: 0,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            SvgPicture.asset('assets/icons/level-progress.svg',
-                                fit: BoxFit.fill),
-                          ],
+                Padding(
+                  padding: const EdgeInsets.all(18.0),
+                  child: SafeArea(
+                    child: Stack(
+                      children: [
+                        Positioned(
+                          top: 40,
+                          left: 0,
+                          right: 0,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              SvgPicture.asset(
+                                  'assets/icons/level-progress.svg',
+                                  fit: BoxFit.fill),
+                            ],
+                          ),
                         ),
-                      ),
-                      Positioned(
-                        bottom: 0,
-                        left: 0,
-                        right: 0,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Container(
-                              width: (MediaQuery.of(context).size.width / 1.10),
-                              padding: const EdgeInsets.all(24),
-                              decoration: BoxDecoration(
-                                gradient: bPrimaryGradient,
-                                borderRadius: BorderRadius.circular(30),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Row(
-                                    children: [
-                                      SvgPicture.asset(
-                                          'assets/icons/help-circle.svg',
-                                          fit: BoxFit.fill),
-                                      const SizedBox(width: 15),
-                                      const Text(
-                                        'DO YOU KNOW...',
-                                        style: TextStyle(
-                                          fontSize: 16,
-                                          color: Color(0xFF66341C),
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                  const SizedBox(height: 18),
-                                  const Text(
-                                    'Between 83,000 and 145,000 cubic meters of garbage are dumped in Polish forests every year',
-                                    style: TextStyle(
-                                      fontSize: 20,
-                                      color: Color(0xFF66341C),
-                                      fontWeight: FontWeight.w500,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SvgPicture.asset('assets/icons/sad_bear.svg'),
-                            const SizedBox(height: 20),
-                            GestureDetector(
-                              onTap: () {
-                                provider.restartIndexForQuestion();
-                                Navigator.pushReplacement(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => FirstPage()));
-                              },
-                              child: Container(
+                        Positioned(
+                          bottom: 60,
+                          left: 0,
+                          right: 0,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Container(
                                 width:
                                     (MediaQuery.of(context).size.width / 1.10),
                                 padding: const EdgeInsets.all(24),
                                 decoration: BoxDecoration(
-                                  gradient: kPrimaryGradient,
+                                  gradient: bPrimaryGradient,
                                   borderRadius: BorderRadius.circular(30),
                                 ),
-                                child: const Text(
-                                  textAlign: TextAlign.center,
-                                  'HELP THE BEAR',
-                                  style: TextStyle(
-                                    fontSize: 22,
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Row(
+                                      children: [
+                                        SvgPicture.asset(
+                                            'assets/icons/help-circle.svg',
+                                            fit: BoxFit.fill),
+                                        const SizedBox(width: 15),
+                                        const Text(
+                                          'DO YOU KNOW...',
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Color(0xFF66341C),
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const SizedBox(height: 18),
+                                    RichText(
+                                      text: TextSpan(
+                                        text: 'Between ',
+                                        style: GoogleFonts.dosis(
+                                          color: const Color(0xFF66341C),
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.w500,
+                                          letterSpacing: -0.0,
+                                        ),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                            text: '83,000',
+                                            style: GoogleFonts.dosis(
+                                              color: const Color(0xFFFF7900),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500,
+                                              letterSpacing: -0.0,
+                                            ),
+                                          ),
+                                          const TextSpan(text: ' and'),
+                                          TextSpan(
+                                            text: ' 145,000',
+                                            style: GoogleFonts.dosis(
+                                              color: const Color(0xFFFF7900),
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.w500,
+                                              letterSpacing: -0.0,
+                                            ),
+                                          ),
+                                          const TextSpan(
+                                              text:
+                                                  ' cubic meters of garbage are dumped in Polish forests every year'),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              SvgPicture.asset('assets/icons/sad_bear.svg'),
+                              const SizedBox(height: 20),
+                            ],
+                          ),
+                        ),
+                        Positioned(
+                          bottom: 0,
+                          left: 0,
+                          right: 0,
+                          child: GestureDetector(
+                            onTap: () {
+                              provider.restartIndexForQuestion();
+                              Navigator.pushReplacement(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => FirstPage()));
+                            },
+                            child: Container(
+                              width: (MediaQuery.of(context).size.width / 1.10),
+                              padding: const EdgeInsets.all(24),
+                              decoration: BoxDecoration(
+                                gradient: kPrimaryGradient,
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: const Text(
+                                textAlign: TextAlign.center,
+                                'HELP THE BEAR',
+                                style: TextStyle(
+                                  fontSize: 22,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                             ),
-                          ],
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ],

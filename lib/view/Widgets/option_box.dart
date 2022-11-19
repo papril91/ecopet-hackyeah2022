@@ -41,32 +41,28 @@ class OptionBox extends StatelessWidget {
         return Colors.blue;
       }
 
-      return Padding(
-        padding: const EdgeInsets.only(top: 10, right: 15, left: 15),
-        child: ListTile(
-          onTap: () {
-            provider.selectedOptionIndex(providerIndexForOption);
-          },
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          tileColor: changeColor(),
-          leading: Text(
-            optionIndex,
-            style: GoogleFonts.dosis(
-              fontSize: 18,
-              fontWeight: FontWeight.w700,
-              color: const Color.fromRGBO(212, 212, 212, 1),
-            ),
+      return ListTile(
+        onTap: () {
+          provider.selectedOptionIndex(providerIndexForOption);
+        },
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        tileColor: changeColor(),
+        leading: Text(
+          optionIndex,
+          style: GoogleFonts.dosis(
+            fontSize: 18,
+            fontWeight: FontWeight.w600,
+            color: const Color(0xFF66341C),
           ),
-          title: Text(
-            optionParameter[indexForQuestionNumber],
-            textAlign: TextAlign.left,
-            style: GoogleFonts.dosis(
-              fontWeight: FontWeight.w800,
-              fontSize: 18,
-              letterSpacing: -0.3,
-              color: const Color.fromRGBO(255, 248, 255, 1),
-            ),
+        ),
+        title: Text(
+          optionParameter[indexForQuestionNumber],
+          textAlign: TextAlign.left,
+          style: GoogleFonts.dosis(
+            fontWeight: FontWeight.w600,
+            fontSize: 18,
+            letterSpacing: -0.3,
+            color: const Color(0xFF66341C),
           ),
         ),
       );

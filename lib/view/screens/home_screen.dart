@@ -1,7 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:quizapp2/constants.dart';
 import '../../controller/index_controller.dart';
 import '../../utilities/list_of_answers.dart';
 import '../../utilities/list_of_questions.dart';
@@ -19,196 +21,220 @@ class FirstPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WillPopScope(
-      onWillPop: () async {
-        final shouldPop = await showDialog<bool>(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              insetPadding: EdgeInsets.zero,
-              contentTextStyle: GoogleFonts.dosis(),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(20),
-              ),
-              title: const Text('Quit Quiz?'),
-              content: const Text(
-                'Are you sure you want exit!',
-                textAlign: TextAlign.left,
-                style: TextStyle(color: Colors.grey, fontSize: 16),
-              ),
-              actions: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => exit(0)));
-                  },
-                  child: const Text(
-                    'Yes',
-                    style: TextStyle(color: Colors.red),
+    return Scaffold(
+      backgroundColor: const Color(0xFFFFFBD6),
+      appBar: AppBar(
+        toolbarHeight: 30,
+        backgroundColor: const Color(0xFFFFFBD6),
+        centerTitle: true,
+        elevation: 0,
+      ),
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          SvgPicture.asset('assets/icons/bg.svg', fit: BoxFit.fitHeight),
+          SafeArea(
+            child: Column(
+              children: [
+                SvgPicture.asset('assets/icons/level-progress.svg',
+                    fit: BoxFit.fill),
+                const SizedBox(height: 40),
+                SvgPicture.asset('assets/icons/sad_bear.svg'),
+                const SizedBox(height: 20),
+                Positioned(
+                  top: 20,
+                  child: Container(
+                    height: 350,
+                    width: (MediaQuery.of(context).size.width / 1.10),
+                    decoration: BoxDecoration(
+                      gradient: bPrimaryGradient,
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 16, left: 24),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Consumer<IndexController>(
+                            builder: (context, provider, child) {
+                              indexForQuestionNumber =
+                                  provider.currentQuestionIndex;
+                              selectedOption = provider.optionSelected;
+                              return QuestionNumberIndex(
+                                questionNumber: indexForQuestionNumber,
+                              );
+                            },
+                          ),
+                          Consumer<IndexController>(
+                            builder: (context, provider, child) {
+                              indexForQuestionNumber =
+                                  provider.currentQuestionIndex;
+                              return QuestionBox(
+                                  question:
+                                      questionsList[indexForQuestionNumber]);
+                            },
+                          ),
+                          Consumer<IndexController>(
+                            builder: (context, provider, child) {
+                              return Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  OptionBox(
+                                    optionSelected: provider.optionSelected,
+                                    optionParameter: optionOne,
+                                    optionIndex: 'A.',
+                                    indexForQuestionNumber:
+                                        provider.currentQuestionIndex,
+                                    providerIndexForOption: 1,
+                                  ),
+                                  OptionBox(
+                                    optionSelected: provider.optionSelected,
+                                    optionParameter: optionTwo,
+                                    optionIndex: 'B.',
+                                    indexForQuestionNumber:
+                                        provider.currentQuestionIndex,
+                                    providerIndexForOption: 2,
+                                  ),
+                                  OptionBox(
+                                    optionSelected: provider.optionSelected,
+                                    optionParameter: optionThree,
+                                    optionIndex: 'C.',
+                                    indexForQuestionNumber:
+                                        provider.currentQuestionIndex,
+                                    providerIndexForOption: 3,
+                                  ),
+                                  Consumer<IndexController>(
+                                      builder: (context, provider, child) {
+                                    indexForQuestionNumber =
+                                        provider.currentQuestionIndex;
+                                    selectedOption = provider.optionSelected;
+
+                                    return selectedOption > 0
+                                        ? Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.end,
+                                                children: [
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.all(
+                                                            10),
+                                                    child: Container(
+                                                      height: 45,
+                                                      width: 100,
+                                                      decoration: BoxDecoration(
+                                                          borderRadius:
+                                                              BorderRadius
+                                                                  .circular(10),
+                                                          boxShadow: const [
+                                                            BoxShadow(
+                                                              offset:
+                                                                  Offset(1, 5),
+                                                              color: Color
+                                                                  .fromRGBO(
+                                                                      0,
+                                                                      0,
+                                                                      0,
+                                                                      0.25),
+                                                              blurRadius: 1.5,
+                                                              spreadRadius: 1,
+                                                            ),
+                                                            BoxShadow(
+                                                                offset: Offset(
+                                                                    1, 2),
+                                                                color: Colors
+                                                                    .white,
+                                                                blurRadius: 1,
+                                                                spreadRadius: 1)
+                                                          ]),
+                                                      child: ListTile(
+                                                        onTap: () {
+                                                          marksForCorrectAnswers();
+                                                          // Przenies jesli jest wiecej niz dwie odpowiedzi
+                                                          if (indexForQuestionNumber <
+                                                              3) {
+                                                            provider
+                                                                .updateIndexForQuestion();
+                                                          } else {
+                                                            Navigator.push(
+                                                                context,
+                                                                MaterialPageRoute(
+                                                                  builder:
+                                                                      (context) =>
+                                                                          ResultPage(
+                                                                    marksEarnedFromQuiz:
+                                                                        marksObtainedFromCorrectAnswer,
+                                                                  ),
+                                                                ));
+                                                          }
+                                                          provider
+                                                              .selectedOptionIndex(
+                                                                  0);
+                                                        },
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        10)),
+                                                        tileColor: Colors.white,
+                                                        leading: Text(
+                                                          'NEXT',
+                                                          style:
+                                                              GoogleFonts.dosis(
+                                                            fontWeight:
+                                                                FontWeight.w700,
+                                                            color: const Color
+                                                                    .fromRGBO(
+                                                                66,
+                                                                130,
+                                                                241,
+                                                                1),
+                                                          ),
+                                                        ),
+                                                        title: const Padding(
+                                                          padding:
+                                                              EdgeInsets.only(
+                                                            right: 20,
+                                                            bottom: 5,
+                                                          ),
+                                                          child: Icon(
+                                                            Icons.arrow_forward,
+                                                            color:
+                                                                Color.fromRGBO(
+                                                                    66,
+                                                                    130,
+                                                                    241,
+                                                                    1),
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          )
+                                        : const SizedBox(
+                                            height: 65,
+                                          );
+                                  })
+                                ],
+                              );
+                            },
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context, false);
-                  },
-                  child: const Text('No'),
                 ),
               ],
-            );
-          },
-        );
-        return shouldPop!;
-      },
-      child: Scaffold(
-        backgroundColor: Color(0xFFFFFBD6),
-        appBar: AppBar(
-          toolbarHeight: 30,
-          backgroundColor: Color(0xFFFFFBD6),
-          title: Text(
-            'ForestFlex',
-            style: GoogleFonts.dosis(
-              color: Colors.black,
-              fontWeight: FontWeight.w700,
-              fontSize: 25,
-              letterSpacing: -0.3,
             ),
           ),
-          centerTitle: true,
-          elevation: 0,
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          //Main Column
-          children: [
-            Consumer<IndexController>(builder: (context, provider, child) {
-              indexForQuestionNumber = provider.currentQuestionIndex;
-              selectedOption = provider.optionSelected;
-              return QuestionNumberIndex(
-                questionNumber: indexForQuestionNumber,
-              );
-            }),
-            Consumer<IndexController>(builder: (context, provider, child) {
-              indexForQuestionNumber = provider.currentQuestionIndex;
-              return QuestionBox(
-                  question: questionsList[indexForQuestionNumber]);
-            }),
-            Consumer<IndexController>(builder: (context, provider, child) {
-              return Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  OptionBox(
-                    optionSelected: provider.optionSelected,
-                    optionParameter: optionOne,
-                    optionIndex: 'A.',
-                    indexForQuestionNumber: provider.currentQuestionIndex,
-                    providerIndexForOption: 1,
-                  ),
-                  OptionBox(
-                    optionSelected: provider.optionSelected,
-                    optionParameter: optionTwo,
-                    optionIndex: 'B.',
-                    indexForQuestionNumber: provider.currentQuestionIndex,
-                    providerIndexForOption: 2,
-                  ),
-                  OptionBox(
-                    optionSelected: provider.optionSelected,
-                    optionParameter: optionThree,
-                    optionIndex: 'C.',
-                    indexForQuestionNumber: provider.currentQuestionIndex,
-                    providerIndexForOption: 3,
-                  ),
-                  Consumer<IndexController>(
-                      builder: (context, provider, child) {
-                    indexForQuestionNumber = provider.currentQuestionIndex;
-                    selectedOption = provider.optionSelected;
-
-                    return selectedOption > 0
-                        ? Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(10),
-                                    child: Container(
-                                      height: 45,
-                                      width: 100,
-                                      decoration: BoxDecoration(
-                                          borderRadius:
-                                              BorderRadius.circular(10),
-                                          boxShadow: const [
-                                            BoxShadow(
-                                              offset: Offset(1, 5),
-                                              color:
-                                                  Color.fromRGBO(0, 0, 0, 0.25),
-                                              blurRadius: 1.5,
-                                              spreadRadius: 1,
-                                            ),
-                                            BoxShadow(
-                                                offset: Offset(1, 2),
-                                                color: Colors.white,
-                                                blurRadius: 1,
-                                                spreadRadius: 1)
-                                          ]),
-                                      child: ListTile(
-                                        onTap: () {
-                                          marksForCorrectAnswers();
-                                          // Przenies jesli jest wiecej niz dwie odpowiedzi
-                                          if (indexForQuestionNumber < 3) {
-                                            provider.updateIndexForQuestion();
-                                          } else {
-                                            Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                  builder: (context) =>
-                                                      ResultPage(
-                                                    marksEarnedFromQuiz:
-                                                        marksObtainedFromCorrectAnswer,
-                                                  ),
-                                                ));
-                                          }
-                                          provider.selectedOptionIndex(0);
-                                        },
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10)),
-                                        tileColor: Colors.white,
-                                        leading: Text(
-                                          'NEXT',
-                                          style: GoogleFonts.dosis(
-                                            fontWeight: FontWeight.w700,
-                                            color: const Color.fromRGBO(
-                                                66, 130, 241, 1),
-                                          ),
-                                        ),
-                                        title: const Padding(
-                                          padding: EdgeInsets.only(
-                                            right: 20,
-                                            bottom: 5,
-                                          ),
-                                          child: Icon(
-                                            Icons.arrow_forward,
-                                            color:
-                                                Color.fromRGBO(66, 130, 241, 1),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ],
-                          )
-                        : const SizedBox(
-                            height: 65,
-                          );
-                  })
-                ],
-              );
-            }),
-          ],
-        ),
+        ],
       ),
     );
   }
