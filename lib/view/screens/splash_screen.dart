@@ -16,7 +16,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   _navigateToFirstPage() async {
-    await Future.delayed(const Duration(milliseconds: 2200), () {});
+    await Future.delayed(const Duration(milliseconds: 100), () {});
     // ignore: use_build_context_synchronously
     Navigator.pushReplacement(
         context, MaterialPageRoute(builder: (context) => const HomeScreen()));
