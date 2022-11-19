@@ -58,7 +58,8 @@ class HomeScreen extends StatelessWidget {
             child: Stack(
               fit: StackFit.expand,
               children: [
-                SvgPicture.asset('assets/icons/bg_1.svg', fit: BoxFit.fill),
+                SvgPicture.asset('assets/icons/main_bg_all.svg',
+                    fit: BoxFit.fill),
                 SafeArea(
                   child: Stack(
                     children: [
