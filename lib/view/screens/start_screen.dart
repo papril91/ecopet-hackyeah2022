@@ -64,6 +64,18 @@ class HomeScreen extends StatelessWidget {
                   child: Stack(
                     children: [
                       Positioned(
+                        top: 40,
+                        left: 0,
+                        right: 0,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SvgPicture.asset('assets/icons/level-progress.svg',
+                                fit: BoxFit.fill),
+                          ],
+                        ),
+                      ),
+                      Positioned(
                         bottom: 0,
                         left: 0,
                         right: 0,
@@ -79,17 +91,25 @@ class HomeScreen extends StatelessWidget {
                               ),
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
-                                children: const [
-                                  Text(
-                                    'DO YOU KNOW...',
-                                    style: TextStyle(
-                                      fontSize: 16,
-                                      color: Color(0xFF66341C),
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                children: [
+                                  Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                          'assets/icons/help-circle.svg',
+                                          fit: BoxFit.fill),
+                                      const SizedBox(width: 15),
+                                      const Text(
+                                        'DO YOU KNOW...',
+                                        style: TextStyle(
+                                          fontSize: 16,
+                                          color: Color(0xFF66341C),
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                  SizedBox(height: 18),
-                                  Text(
+                                  const SizedBox(height: 18),
+                                  const Text(
                                     'Between 83,000 and 145,000 cubic meters of garbage are dumped in Polish forests every year',
                                     style: TextStyle(
                                       fontSize: 20,
