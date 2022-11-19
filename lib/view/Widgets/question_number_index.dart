@@ -44,7 +44,7 @@ class QuestionNumberIndex extends StatelessWidget {
         child: Center(
             child: Text(
           '$questionNumber / 3',
-          style: GoogleFonts.mulish(
+          style: GoogleFonts.dosis(
             fontSize: 15,
             fontWeight: FontWeight.w700,
             // wordSpacing: -0.3,

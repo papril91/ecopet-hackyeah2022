@@ -18,7 +18,7 @@ class HomeScreen extends StatelessWidget {
           builder: (context) {
             return AlertDialog(
               insetPadding: EdgeInsets.zero,
-              contentTextStyle: GoogleFonts.mulish(),
+              contentTextStyle: GoogleFonts.dosis(),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -53,29 +53,38 @@ class HomeScreen extends StatelessWidget {
       },
       child: Consumer<IndexController>(builder: (context, provider, child) {
         return Scaffold(
-          backgroundColor: Colors.white,
           body: Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            child: Stack(
+              fit: StackFit.expand,
               children: [
-                SvgPicture.asset('assets/icons/bear_hero.svg'),
-                ElevatedButton(
-                  onPressed: () {
-                    provider.restartIndexForQuestion();
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => FirstPage()));
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.white,
+                SvgPicture.asset('assets/icons/bg_1.svg', fit: BoxFit.fill),
+                SafeArea(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SvgPicture.asset('assets/icons/bear_hero.svg'),
+                      ElevatedButton(
+                        onPressed: () {
+                          provider.restartIndexForQuestion();
+                          Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => FirstPage()));
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.white,
+                        ),
+                        child: Text(
+                          'START QUIZ',
+                          style: GoogleFonts.dosis(
+                            fontWeight: FontWeight.w700,
+                            color: const Color.fromRGBO(66, 130, 241, 1),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
-                  child: Text(
-                    'START QUIZ',
-                    style: GoogleFonts.mulish(
-                      fontWeight: FontWeight.w700,
-                      color: const Color.fromRGBO(66, 130, 241, 1),
-                    ),
-                  ),
-                )
+                ),
               ],
             ),
           ),

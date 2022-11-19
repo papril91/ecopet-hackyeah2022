@@ -26,7 +26,7 @@ class FirstPage extends StatelessWidget {
           builder: (context) {
             return AlertDialog(
               insetPadding: EdgeInsets.zero,
-              contentTextStyle: GoogleFonts.mulish(),
+              contentTextStyle: GoogleFonts.dosis(),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -66,7 +66,7 @@ class FirstPage extends StatelessWidget {
           backgroundColor: Color(0xFFFFFBD6),
           title: Text(
             'ForestFlex',
-            style: GoogleFonts.mulish(
+            style: GoogleFonts.dosis(
               color: Colors.black,
               fontWeight: FontWeight.w700,
               fontSize: 25,
@@ -176,7 +176,7 @@ class FirstPage extends StatelessWidget {
                                         tileColor: Colors.white,
                                         leading: Text(
                                           'NEXT',
-                                          style: GoogleFonts.mulish(
+                                          style: GoogleFonts.dosis(
                                             fontWeight: FontWeight.w700,
                                             color: const Color.fromRGBO(
                                                 66, 130, 241, 1),

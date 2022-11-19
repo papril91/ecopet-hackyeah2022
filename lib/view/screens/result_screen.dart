@@ -20,7 +20,7 @@ class ResultPage extends StatelessWidget {
           builder: (context) {
             return AlertDialog(
               insetPadding: EdgeInsets.zero,
-              contentTextStyle: GoogleFonts.mulish(),
+              contentTextStyle: GoogleFonts.dosis(),
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(20),
               ),
@@ -70,7 +70,7 @@ class ResultPage extends StatelessWidget {
                           context: context,
                           builder: (BuildContext context) => AlertDialog(
                                 insetPadding: EdgeInsets.zero,
-                                contentTextStyle: GoogleFonts.mulish(),
+                                contentTextStyle: GoogleFonts.dosis(),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20),
                                 ),
@@ -115,7 +115,7 @@ class ResultPage extends StatelessWidget {
             centerTitle: true,
             title: Text(
               'Result',
-              style: GoogleFonts.mulish(
+              style: GoogleFonts.dosis(
                 color: Colors.black,
                 fontWeight: FontWeight.w700,
                 letterSpacing: -0.3,
@@ -145,7 +145,7 @@ class ResultPage extends StatelessWidget {
                       circularStrokeCap: CircularStrokeCap.round,
                       center: Text(
                         "$marksEarnedFromQuiz/3",
-                        style: GoogleFonts.mulish(
+                        style: GoogleFonts.dosis(
                           color: Colors.black,
                           fontWeight: FontWeight.w700,
                           letterSpacing: -0.3,
@@ -175,7 +175,7 @@ class ResultPage extends StatelessWidget {
                               child: Center(
                                 child: Text(
                                   'Ooops...!',
-                                  style: GoogleFonts.mulish(
+                                  style: GoogleFonts.dosis(
                                     color:
                                         const Color.fromRGBO(255, 255, 255, 1),
                                     fontWeight: FontWeight.w800,
@@ -195,7 +195,7 @@ class ResultPage extends StatelessWidget {
                               child: Center(
                                   child: Text(
                                 'Super! W lesie juz wiedzą, ze jestesmy coraz lepsi!',
-                                style: GoogleFonts.mulish(
+                                style: GoogleFonts.dosis(
                                   color: const Color.fromRGBO(255, 255, 255, 1),
                                   fontWeight: FontWeight.w800,
                                   letterSpacing: -0.3,
@@ -228,7 +228,7 @@ class ResultPage extends StatelessWidget {
                                   child: Text(
                                     'Ajj, jutro będzie lepiej',
                                     textAlign: TextAlign.center,
-                                    style: GoogleFonts.mulish(
+                                    style: GoogleFonts.dosis(
                                       decoration: TextDecoration.underline,
                                       color:
                                           const Color.fromRGBO(66, 130, 241, 1),
@@ -251,7 +251,7 @@ class ResultPage extends StatelessWidget {
                                 child: Text(
                                   'Congratulations\n You Passed the exam',
                                   textAlign: TextAlign.center,
-                                  style: GoogleFonts.mulish(
+                                  style: GoogleFonts.dosis(
                                     color: Colors.black,
                                     fontWeight: FontWeight.w700,
                                     letterSpacing: -0.3,

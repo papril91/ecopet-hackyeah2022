@@ -52,7 +52,7 @@ class OptionBox extends StatelessWidget {
           tileColor: changeColor(),
           leading: Text(
             optionIndex,
-            style: GoogleFonts.mulish(
+            style: GoogleFonts.dosis(
               fontSize: 18,
               fontWeight: FontWeight.w700,
               color: const Color.fromRGBO(212, 212, 212, 1),
@@ -61,7 +61,7 @@ class OptionBox extends StatelessWidget {
           title: Text(
             optionParameter[indexForQuestionNumber],
             textAlign: TextAlign.left,
-            style: GoogleFonts.mulish(
+            style: GoogleFonts.dosis(
               fontWeight: FontWeight.w800,
               fontSize: 18,
               letterSpacing: -0.3,
