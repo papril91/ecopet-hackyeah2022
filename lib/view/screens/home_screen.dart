@@ -5,9 +5,7 @@ import 'package:provider/provider.dart';
 import '../../controller/index_controller.dart';
 import '../../utilities/list_of_answers.dart';
 import '../../utilities/list_of_questions.dart';
-import '../Widgets/choose_an_answer_box.dart';
 import '../Widgets/option_box.dart';
-import '../Widgets/question_answer_divider.dart';
 import '../Widgets/question_box.dart';
 import '../Widgets/question_number_index.dart';
 import 'result_screen.dart';
@@ -62,12 +60,12 @@ class FirstPage extends StatelessWidget {
         return shouldPop!;
       },
       child: Scaffold(
-        backgroundColor: Colors.white,
+        backgroundColor: Color(0xFFFFFBD6),
         appBar: AppBar(
-          toolbarHeight: 78,
-          backgroundColor: Colors.white,
+          toolbarHeight: 30,
+          backgroundColor: Color(0xFFFFFBD6),
           title: Text(
-            'Quiz',
+            'ForestFlex',
             style: GoogleFonts.mulish(
               color: Colors.black,
               fontWeight: FontWeight.w700,
@@ -80,7 +78,6 @@ class FirstPage extends StatelessWidget {
         ),
         body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
           //Main Column
           children: [
             Consumer<IndexController>(builder: (context, provider, child) {
@@ -92,12 +89,9 @@ class FirstPage extends StatelessWidget {
             }),
             Consumer<IndexController>(builder: (context, provider, child) {
               indexForQuestionNumber = provider.currentQuestionIndex;
-
               return QuestionBox(
                   question: questionsList[indexForQuestionNumber]);
             }),
-            const DividerToDivideQuestionAndAnswer(),
-            const ChooseAnAnswerBox(),
             Consumer<IndexController>(builder: (context, provider, child) {
               return Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -122,13 +116,6 @@ class FirstPage extends StatelessWidget {
                     optionIndex: 'C.',
                     indexForQuestionNumber: provider.currentQuestionIndex,
                     providerIndexForOption: 3,
-                  ),
-                  OptionBox(
-                    optionSelected: provider.optionSelected,
-                    optionParameter: optionFour,
-                    optionIndex: 'D.',
-                    indexForQuestionNumber: provider.currentQuestionIndex,
-                    providerIndexForOption: 4,
                   ),
                   Consumer<IndexController>(
                       builder: (context, provider, child) {
@@ -167,7 +154,8 @@ class FirstPage extends StatelessWidget {
                                       child: ListTile(
                                         onTap: () {
                                           marksForCorrectAnswers();
-                                          if (indexForQuestionNumber < 10) {
+                                          // Przenies jesli jest wiecej niz dwie odpowiedzi
+                                          if (indexForQuestionNumber < 3) {
                                             provider.updateIndexForQuestion();
                                           } else {
                                             Navigator.push(

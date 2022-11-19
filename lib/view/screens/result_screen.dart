@@ -139,12 +139,12 @@ class ResultPage extends StatelessWidget {
                       animation: true,
                       radius: 70,
                       lineWidth: 13.0,
-                      percent: marksEarnedFromQuiz / 10,
+                      percent: marksEarnedFromQuiz / 3,
                       animationDuration: 1000,
                       reverse: true,
                       circularStrokeCap: CircularStrokeCap.round,
                       center: Text(
-                        "$marksEarnedFromQuiz/10",
+                        "$marksEarnedFromQuiz/3",
                         style: GoogleFonts.mulish(
                           color: Colors.black,
                           fontWeight: FontWeight.w700,
@@ -164,7 +164,7 @@ class ResultPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      marksEarnedFromQuiz < 5
+                      marksEarnedFromQuiz < 2
                           ? Container(
                               width: 150,
                               height: 40,
@@ -186,7 +186,7 @@ class ResultPage extends StatelessWidget {
                               ),
                             )
                           : Container(
-                              width: 150,
+                              width: 380,
                               height: 40,
                               decoration: BoxDecoration(
                                 color: const Color.fromRGBO(82, 186, 0, 1),
@@ -194,7 +194,7 @@ class ResultPage extends StatelessWidget {
                               ),
                               child: Center(
                                   child: Text(
-                                'Awesome!',
+                                'Super! W lesie juz wiedzą, ze jestesmy coraz lepsi!',
                                 style: GoogleFonts.mulish(
                                   color: const Color.fromRGBO(255, 255, 255, 1),
                                   fontWeight: FontWeight.w800,
@@ -208,7 +208,7 @@ class ResultPage extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      marksEarnedFromQuiz < 5
+                      marksEarnedFromQuiz < 3
                           ? Padding(
                               padding: const EdgeInsets.only(
                                 top: 23,
@@ -226,7 +226,7 @@ class ResultPage extends StatelessWidget {
                                                 const HomeScreen()));
                                   },
                                   child: Text(
-                                    'Try Again',
+                                    'Ajj, jutro będzie lepiej',
                                     textAlign: TextAlign.center,
                                     style: GoogleFonts.mulish(
                                       decoration: TextDecoration.underline,

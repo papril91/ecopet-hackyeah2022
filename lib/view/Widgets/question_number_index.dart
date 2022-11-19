@@ -4,9 +4,8 @@ import 'package:google_fonts/google_fonts.dart';
 class QuestionNumberIndex extends StatelessWidget {
   int questionNumber;
 
-  QuestionNumberIndex({
-    Key? key, required this.questionNumber
-  }) : super(key: key);
+  QuestionNumberIndex({Key? key, required this.questionNumber})
+      : super(key: key);
   // int questionNumber;
 
   @override
@@ -44,7 +43,7 @@ class QuestionNumberIndex extends StatelessWidget {
             ),
         child: Center(
             child: Text(
-          '$questionNumber / 10',
+          '$questionNumber / 3',
           style: GoogleFonts.mulish(
             fontSize: 15,
             fontWeight: FontWeight.w700,
