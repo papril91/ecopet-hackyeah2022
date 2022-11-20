@@ -32,26 +32,29 @@ class FirstPage extends StatelessWidget {
       body: Stack(
         fit: StackFit.expand,
         children: [
-          SvgPicture.asset('assets/icons/bg.svg', fit: BoxFit.fitHeight),
+          SvgPicture.asset('assets/icons/bg_duze.svg', fit: BoxFit.fill),
           SafeArea(
             child: Column(
               children: [
                 SvgPicture.asset('assets/icons/level-progress.svg',
                     fit: BoxFit.fill),
-                const SizedBox(height: 40),
                 SvgPicture.asset('assets/icons/sad_bear.svg'),
-                const SizedBox(height: 20),
+                // const SizedBox(height: 20),
                 Positioned(
-                  top: 20,
+                  top: 10,
                   child: Container(
-                    height: 350,
+                    height: 370,
                     width: (MediaQuery.of(context).size.width / 1.10),
                     decoration: BoxDecoration(
                       gradient: bPrimaryGradient,
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.only(top: 16, left: 24),
+                      padding: const EdgeInsets.only(
+                        top: 16,
+                        left: 24,
+                        right: 24,
+                      ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
@@ -161,15 +164,16 @@ class FirstPage extends StatelessWidget {
                                                                 .updateIndexForQuestion();
                                                           } else {
                                                             Navigator.push(
-                                                                context,
-                                                                MaterialPageRoute(
-                                                                  builder:
-                                                                      (context) =>
-                                                                          ResultPage(
-                                                                    marksEarnedFromQuiz:
-                                                                        marksObtainedFromCorrectAnswer,
-                                                                  ),
-                                                                ));
+                                                              context,
+                                                              MaterialPageRoute(
+                                                                builder:
+                                                                    (context) =>
+                                                                        ResultPage(
+                                                                  marksEarnedFromQuiz:
+                                                                      marksObtainedFromCorrectAnswer,
+                                                                ),
+                                                              ),
+                                                            );
                                                           }
                                                           provider
                                                               .selectedOptionIndex(

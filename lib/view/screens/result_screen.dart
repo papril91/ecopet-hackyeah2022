@@ -2,11 +2,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:provider/provider.dart';
 import 'package:quizapp2/constants.dart';
+import 'package:quizapp2/view/screens/points_screen.dart';
 import '../../../controller/index_controller.dart';
-import 'start_screen.dart';
 
 class ResultPage extends StatelessWidget {
   ResultPage({super.key, required this.marksEarnedFromQuiz});
@@ -82,15 +81,97 @@ class ResultPage extends StatelessWidget {
                     Container(
                       height: 350,
                       width: (MediaQuery.of(context).size.width / 1.10),
-                      padding: const EdgeInsets.all(24),
+                      padding: const EdgeInsets.all(30),
                       decoration: BoxDecoration(
                         gradient: bPrimaryGradient,
                         borderRadius: BorderRadius.circular(30),
                       ),
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          const SizedBox(height: 18),
+                          Text(
+                            marksEarnedFromQuiz > 1
+                                ? 'CONGRATULATIONS!'
+                                : 'Ooops, maybe next time...',
+                            textAlign: TextAlign.center,
+                            style: GoogleFonts.dosis(
+                              color: const Color(0xFF66341C),
+                              fontSize: 32,
+                              fontWeight: FontWeight.w700,
+                              letterSpacing: -0.0,
+                            ),
+                          ),
+                          const SizedBox(height: 17),
+                          if (marksEarnedFromQuiz == 3) ...[
+                            Text(
+                              'You answered all three questions correctly and you made the bear very happy!',
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.dosis(
+                                color: const Color(0xFF66341C),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: -0.0,
+                              ),
+                            ),
+                          ],
+                          if (marksEarnedFromQuiz == 1 ||
+                              marksEarnedFromQuiz == 2) ...[
+                            Text(
+                              "You managed to answer $marksEarnedFromQuiz question correctly! You made the bear cheer up a little.",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.dosis(
+                                color: const Color(0xFF66341C),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: -0.0,
+                              ),
+                            ),
+                          ],
+                          if (marksEarnedFromQuiz == 0) ...[
+                            Text(
+                              "None of your answers were correct. You didn't manage to cheer up the bear.",
+                              textAlign: TextAlign.center,
+                              style: GoogleFonts.dosis(
+                                color: const Color(0xFF66341C),
+                                fontSize: 20,
+                                fontWeight: FontWeight.w500,
+                                letterSpacing: -0.0,
+                              ),
+                            ),
+                          ],
+                          const SizedBox(height: 30),
+                          marksEarnedFromQuiz != 0
+                              ? GestureDetector(
+                                  onTap: () => Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                      builder: (context) => PointsPage(
+                                        points: marksEarnedFromQuiz,
+                                      ),
+                                    ),
+                                  ),
+                                  child: Container(
+                                    width: (MediaQuery.of(context).size.width /
+                                        1.10),
+                                    padding: const EdgeInsets.all(24),
+                                    decoration: BoxDecoration(
+                                      gradient: kPrimaryGradient,
+                                      borderRadius: BorderRadius.circular(30),
+                                    ),
+                                    child: Text(
+                                      textAlign: TextAlign.center,
+                                      'PROCEED',
+                                      style: GoogleFonts.dosis(
+                                        color: const Color(0xFFFFFFFF),
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.w700,
+                                        letterSpacing: -0.0,
+                                      ),
+                                    ),
+                                  ),
+                                )
+                              : const SizedBox(),
                         ],
                       ),
                     ),

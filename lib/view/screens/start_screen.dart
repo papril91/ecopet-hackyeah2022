@@ -79,7 +79,7 @@ class HomeScreen extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                          bottom: 60,
+                          bottom: 110,
                           left: 0,
                           right: 0,
                           child: Column(
